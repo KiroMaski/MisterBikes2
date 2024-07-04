@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>MasterBikes</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" 
+		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Nav -->
+			<nav id="nav">
+				<ul class="container">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="#work">Lo que hacemos</a></li>
+					<li><a href="#portfolio">Lo que vendemos</a></li>
+					<li><a href="Registro.html">Registro</a></li>
+					<li><a href="Iniciar sesion.html">Iniciar sesion</a></li>
+				</ul>
+			</nav>
+
+		<!-- Registro -->
+			<article id="contact" class="wrapper style4">
+				<div class="container medium">
+					<header>
+						<div class="container">
+						<head>
+							<meta charset="UTF-8">
+							<meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<title>Carrito de Compras</title>
+							<style>
+								.cart {
+									position: fixed;
+									top: 20px;
+									right: 20px;
+									background-color: #4e4e4e;
+									border: 1px solid #222222;
+									padding: 10px;
+								}
+							
+								.product {
+									margin-bottom: 10px;
+									background-color: #4e4e4e;
+									border: 1px solid #222222;
+									
+								}
+							</style>
+							</head>
+							<body>
+							
+							<div class="products">
+								<div class="container">
+							
+								<br>
+								<h2>Bicicletas</h2>
+								<br>
+								<div class="product">
+									<h3>Bicicleta Roja</h3>
+									<img src="images/Bicicleta Roja.png" alt="bicicleta roja" width="300">
+									<p>Precio: $600.000</p>
+									<button onclick="addToCart(600000)">Agregar</button>
+									<button onclick="removeFromCart(600000)">Quitar</button>
+									<span id="quantity-product1"></span>
+								</div>
+
+								<div class="product">
+									<h3>Bicicleta montaña</h3>
+									<img src="images/Bicicleta montaña.jpg" alt="bicicleta roja" width="300">
+									<p>Precio: $1.250.000</p>
+									<button onclick="addToCart(1250000)">Agregar</button>
+									<button onclick="removeFromCart(1250000)">Quitar</button>
+									<span id="quantity-product2"></span>
+								</div>
+
+								<div class="product">
+									<h3>Bicicleta Azul</h3>
+									<img src="images/Bicicleta Azul.jpg" alt="bicicleta roja" width="300">
+									<p>Precio: $850.000</p>
+									<button onclick="addToCart(850000)">Agregar</button>
+									<button onclick="removeFromCart(850000)">Quitar</button>
+									<span id="quantity-product3"></span>
+								</div>
+							</div>
+								<br>
+								<h2>Accesorios</h2>
+								<br>
+
+								<div class="product">
+									<h3>Casco para bicicleta</h3>
+									<img src="images/casco.jpg" alt="bicicleta roja" width="300">
+									<p>Precio: $50.000</p>
+									<button onclick="addToCart(50000)">Agregar</button>
+									<button onclick="removeFromCart(50000)">Quitar</button>
+									<span id="quantity-product4"></span>
+								</div>
+
+								<div class="product">
+									<h3>Luces para bicicleta</h3>
+									<img src="images/luces.jpg" alt="bicicleta roja" width="300">
+									<p>Precio: $5.000</p>
+									<button onclick="addToCart(5000)">Agregar</button>
+									<button onclick="removeFromCart(5000)">Quitar</button>
+									<span id="quantity-product5"></span>
+								</div>
+
+								<div class="product">
+									<h3>PortaTelefono</h3>
+									<img src="images/porta telefono.jpg" alt="bicicleta roja" width="300">
+									<p>Precio: $25.000</p>
+									<button onclick="addToCart(25000)">Agregar</button>
+									<button onclick="removeFromCart(25000)">Quitar</button>
+									<span id="quantity-product6"></span>
+								</div>
+								</div>
+
+								<div class="cart">
+									<br>
+									<br>
+									<h2>Carrito</h2>
+									<ul id="cart-items">
+									</ul>
+									<p>Total: $<span id="total">0</span></p>
+
+									<button onclick="showAlert()">Comprar</button>
+									
+									<script>
+										function showAlert() {
+											alert('¡Su compra ha sido exitosa!');
+										}
+									</script>
+									
+								</div>
+
+
+							
+							<script>
+								let cart = [];
+								let totalPrice = 0;
+							
+								function addToCart(price) {
+									cart.push(price);
+									updateCart();
+								}
+							
+								function removeFromCart(price) {
+									const index = cart.indexOf(price);
+									if (index !== -1) {
+										cart.splice(index, 1);
+										updateCart();
+									}
+								}
+							
+								function updateCart() {
+									let quantityProduct1 = 0;
+									let quantityProduct2 = 0;
+									totalPrice = 0;
+							
+									cart.forEach(item => {
+										totalPrice += item;
+										if (item === 10) {
+											quantityProduct1++;
+										} else if (item === 20) {
+											quantityProduct2++;
+										}
+									});
+							
+									document.getElementById('cart-items').innerHTML = '';
+									cart.forEach(item => {
+										const li = document.createElement('li');
+										li.textContent = '$' + item;
+										document.getElementById('cart-items').appendChild(li);
+									});
+							
+									document.getElementById('total').textContent = totalPrice;
+									document.getElementById('quantity-product1').textContent = quantityProduct1;
+									document.getElementById('quantity-product2').textContent = quantityProduct2;
+								}
+							</script>
+							
+							</body>
+						</div>
+						<div class="col-12">
+							<hr />
+							<h3>Encuentranos</h3>
+							<ul class="social">
+								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+								<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								<li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
+								<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+								<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+							</ul>
+							<hr />
+						</div>
+					</div>
+					<footer>
+						<ul id="copyright">
+							<li>&copy; MasterBikes. All rights reserved.</li><li>Design: <a>Somos los mejores</a></li>
+						</ul>
+					</footer>
+				</div>
+			</article>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
